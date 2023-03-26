@@ -184,7 +184,7 @@ function Quiz({ quizzes }) {
 export async function getServerSideProps({ params }) {
     const { slug } = params;
     // const res = await fetch(`${baseUrl}/api/blog/${slug}`);
-    const res = await fetch(`http://localhost:3000/api/quiz/${slug}`);
+    const res = await fetch(`https://quiz-edfw-6nb4pru7c-mrnormal128-gmailcom.vercel.app/api/quiz/${slug}`);
     const data = await res.json();
     return {
         props: {
