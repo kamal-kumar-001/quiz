@@ -14,7 +14,7 @@ const SignUp = () => {
     if (isLoggedIn()) {
       router.push('/admin');
     }
-  }, []);
+  }, [router]);
   return (
     <>
      <Head>

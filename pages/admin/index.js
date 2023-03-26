@@ -31,7 +31,7 @@ const AdminPage = () => {
     };
 
     fetchUser();
-  }, []);
+  }, [router]);
   const [quizzes, setQuizzes] = useState(null);
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -55,7 +55,7 @@ const AdminPage = () => {
     };
 
     fetchQuizzes();
-  }, []);
+  }, [router]);
   return (
     <AdminRoute>
       <Admin quizzes={quizzes} user={user} />

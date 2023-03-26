@@ -14,7 +14,7 @@ const LogIn = () => {
     if (isLoggedIn()) {
       router.push('/admin');
     }
-  }, []);
+  }, [router]);
   return (
     <>
     <Head>

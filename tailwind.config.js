@@ -14,7 +14,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        trueGray: colors.trueGray,
+        trueGray: colors.neutral,
       },
     },
     fontFamily: {

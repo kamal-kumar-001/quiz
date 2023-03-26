@@ -25,7 +25,7 @@ const Admin = ({ quizzes,user }) => {
 
      <h1 className="text-2xl font-bold mb-4 ">Quiz List</h1>
       
-      {/* <span>{message}</span> */}
+      <span>{message}</span>
     <div className="flex flex-wrap  gap-4">
       {quizzes && quizzes.map((quiz) => (
         <div key={quiz._id} className="bg-white dark:bg-slate-600 rounded-lg overflow-hidden shadow-lg">

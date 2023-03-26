@@ -13,7 +13,6 @@ import Cta from "./cta";
 import Faq from "./faq";
 import PopupWidget from "./popupWidget";
 import Pricing from "./pricing";
-import Integrations from "./integrations";
 
 //import dynamic from "next/dynamic";
 
@@ -70,14 +69,6 @@ export default function Home() {
           do not forget to add one. Just like this.
         </SectionTitle>
         <Pricing />
-      </Element>
-      <Element name="integrations">
-        <SectionTitle
-          pretitle="Integrations"
-          title="Native Integration with External Providers via SMTP Credentials & API">
-          Connect SendMails with unlimited external SMTP services such as Amazon SES, Mandrill, Mailgun and SparkPost to send email via their SMTP servers.
-        </SectionTitle>
-        <Integrations />
       </Element>
       <SectionTitle
         pretitle="Testimonials"

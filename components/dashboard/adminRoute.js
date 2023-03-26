@@ -13,7 +13,7 @@ const AdminRoute = ({ children, ...props }) => {
         if (!isLoggedIn()) {
           router.push('/login');
         }
-      }, []);
+      }, [router]);
   
     return <>{children}</>;
   };
