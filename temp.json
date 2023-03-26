@@ -1,0 +1,562 @@
+/** 
+* Paste one or more documents here
+*/
+{
+    "title": "UPSC",
+    "questions": [
+        {
+            "question": "que 1",
+            "options": [
+                {
+                    "text": "option 1",
+                    "isCorrect": false,
+                    "explanation": "Explanation 1",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b344a"
+                    }
+                },
+                {
+                    "text": "option 2",
+                    "isCorrect": false,
+                    "explanation": "Explanation 2",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b344b"
+                    }
+                },
+                {
+                    "text": "option 3",
+                    "isCorrect": true,
+                    "explanation": "Explanation 3",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b344c"
+                    }
+                },
+                {
+                    "text": "option 4",
+                    "isCorrect": false,
+                    "explanation": "Explanation 4",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b344d"
+                    }
+                }
+            ],
+            "_id": {
+                "$oid": "641c00518b17cd4ad52b3449"
+            }
+        },
+        {
+            "question": "que 2",
+            "options": [
+                {
+                    "text": "option 21",
+                    "isCorrect": false,
+                    "explanation": "Explanation 21",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b344f"
+                    }
+                },
+                {
+                    "text": "option 22",
+                    "isCorrect": false,
+                    "explanation": "Explanation 22",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b3450"
+                    }
+                },
+                {
+                    "text": "option 23",
+                    "isCorrect": false,
+                    "explanation": "Explanation 23",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b3451"
+                    }
+                },
+                {
+                    "text": "option 24",
+                    "isCorrect": true,
+                    "explanation": "Explanation 24",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b3452"
+                    }
+                }
+            ],
+            "_id": {
+                "$oid": "641c00518b17cd4ad52b344e"
+            }
+        },
+        {
+            "question": "Que 3",
+            "options": [
+                {
+                    "text": "1",
+                    "isCorrect": true,
+                    "explanation": "1",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b3454"
+                    }
+                },
+                {
+                    "text": "2",
+                    "isCorrect": false,
+                    "explanation": "2",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b3455"
+                    }
+                },
+                {
+                    "text": "3",
+                    "isCorrect": true,
+                    "explanation": "3",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b3456"
+                    }
+                },
+                {
+                    "text": "4",
+                    "isCorrect": false,
+                    "explanation": "4",
+                    "_id": {
+                        "$oid": "641c00518b17cd4ad52b3457"
+                    }
+                }
+            ],
+            "_id": {
+                "$oid": "641c00518b17cd4ad52b3453"
+            }
+        }
+    ],
+    "__v": 0
+}
+
+ {
+    "title": "Modern Indian History Quiz",
+    "questions": [
+        {
+            "question": "In context to Modern Indian history, what was the Mahad satyagraha about?",
+            "options": [
+                {
+                    "text": "Protest against forced conversions into Hinduism in the guise of ‘Shudhikaran’",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "Challenge to the regressive customs of the caste Hindus",
+                    "isCorrect": true,
+                    "explanation": "Dr Bhimrao Ambedkar led the Mahad Satyagraha in March 1927 to challenge the regressive customs of the caste Hindus."
+                },
+                {
+                    "text": "Indefinite strike against rise in local taxes from peasants",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "None of the above",
+                    "isCorrect": false,
+                }
+            ]
+        },
+        {
+            "question": "Gandhiji was the editor of three English weeklies, these included Indian Opinion, Harijan, Heritage India, Navjivan. Select the correct answer code:",
+            "options": [
+                {
+                    "text": "1 and 2 only",
+                    "isCorrect": true,
+                    "explanation": "These were Indian Opinion (in South Africa during 1903-1915), Young India (1919-1931), and Harijan (1933-1942 and 1946-January 1948)."
+                },
+                {
+                    "text": "2 and 4 only",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "1 and 4 only",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "2 and 3 only",
+                    "isCorrect": false,
+                }
+            ]
+        },
+        {
+            "question": "Whitley Commission established in British India was mandated to report on",
+            "options": [
+                {
+                    "text": "Financial reforms needed in British administration",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "Police and military reforms needed in the wake of the 1857 mutiny",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "Trade and commerce within the princely states",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "Existing conditions of labour and to make recommendations",
+                    "isCorrect": true,
+                    "explanation": "The Royal Commission on Labour or the Whitley Commission on Labour was set up in 1929 to inquire into the existing conditions of labour in industrial undertakings and plantations in India."
+                }
+            ]
+        },
+        {
+            "question": "Consider the following regarding the Revolt of 1857. It was during the reign of Governor General Canning. Mangal Pandey led the Mutiny. It started from Delhi. The mutiny did not spread to South India. Which of the above statements is/are correct?",
+            "options": [
+                {
+                    "text": "1 and 2 only",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "1 and 3 only",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "2 and 3 only",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "1 and 4 only",
+                    "isCorrect": true,
+                    "explanation": "Statement 1 and 4 are correct. Statement 2, 3 are incorrect."
+                }
+            ]
+        },
+        {
+            "question": "In the Federation established by The Government of India Act of 1935, residuary powers were given to the",
+            "options": [
+                {
+                    "text": "Federal Legislature",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "Governor General",
+                    "isCorrect": true,
+                    "explanation": "The residuary powers were not allocated either to the Federation or to the Provinces but was under Section 105 of the Government of India, 1935, reserved to be allocated by the Governor ­General in his discretion to the Federation or to the Provinces."
+                },
+                {
+                    "text": "Provincial Legislature",
+                    "isCorrect": false,
+                },
+                {
+                    "text": "Provincial Governors",
+                    "isCorrect": false,
+                }
+                // run 2
+                {
+                    "title": "Modern Indian History Quiz",
+                    "questions": [
+                        {
+                            "question": "In context to Modern Indian history, what was the Mahad satyagraha about?",
+                            "options": [
+                                {
+                                    "text": "Protest against forced conversions into Hinduism in the guise of ‘Shudhikaran’",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "Challenge to the regressive customs of the caste Hindus",
+                                    "isCorrect": true,
+                                    "explanation": "Dr Bhimrao Ambedkar led the Mahad Satyagraha in March 1927 to challenge the regressive customs of the caste Hindus. He stressed the necessity of removing ideas of ‘high’ and ‘low’ and inculcating self-elevation through self-help, self-respect and self-knowledge."
+                                },
+                                {
+                                    "text": "Indefinite strike against rise in local taxes from peasants",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false,
+                                }
+                            ]
+                        },
+                        {
+                            "question": "Gandhiji was the editor of three English weeklies, these included Indian Opinion, Harijan, Heritage India and Navjivan. Select the correct answer code:",
+                            "options": [
+                                {
+                                    "text": "1 and 2 only",
+                                    "isCorrect": true,
+                                    "explanation": "These were Indian Opinion (in South Africa during 1903-1915), Young India (1919-1931), and Harijan (1933-1942 and 1946-January 1948)."
+                                },
+                                {
+                                    "text": "2 and 4 only",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "1 and 4 only",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "2 and 3 only",
+                                    "isCorrect": false,
+                                }
+                            ]
+                        },
+                        {
+                            "question": "Whitley Commission established in British India was mandated to report on",
+                            "options": [
+                                {
+                                    "text": "Financial reforms needed in British administration",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "Police and military reforms needed in the wake of the 1857 mutiny",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "Trade and commerce within the princely states",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "Existing conditions of labour and to make recommendations",
+                                    "isCorrect": true,
+                                    "explanation": "The Royal Commission on Labour or the Whitley Commission on Labour was set up in 1929 to inquire into the existing conditions of labour in industrial undertakings and plantations in India. The Commission was chaired by John Henry Whitley. The commission submitted its report in 1931. The report surprised many by concurring with the criticisms of Mahatma Gandhi and others that poverty was the cause of India’s social and industrial problems. It was also critical of British employers’ role in perpetuating the problems."
+                                }
+                            ]
+                        },
+                        {
+                            "question": "Consider the following regarding the Revolt of 1857. It was during the reign of Governor General Canning. Mangal Pandey led the Mutiny. It started from Delhi. The mutiny did not spread to South India. Which of the above statements is/are correct?",
+                            "options": [
+                                {
+                                    "text": "1 and 2 only",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "1 and 3 only",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "2 and 3 only",
+                                    "isCorrect": false,
+                                },
+                                {
+                                    "text": "1 and 4 only",
+                                    "isCorrect": true,
+                                    "explanation": "Statement 1 and 4 are correct .Statement 2, 3 are incorrect. The revolt of 1857 was held during the reign of Governor General Lord Canning. (statement 1 is correct) The immediate cause of the revolt of 1857 was that Mangal Pandey killed two British officers on parade at Barrackpore. This revolt spread in Lucknow, Ambala and Meerut cantonments. On May 10, 1857 soldiers at Meerut refused to touch the new Enfield rifle cartridges. The soldiers, along with another group"
+                                    // run 3
+                                    {
+                                        "title": "Modern Indian History Quiz",
+                                        "questions": [
+                                            {
+                                                "question": "In context to Modern Indian history, what was the Mahad satyagraha about?",
+                                                "options": [
+                                                    {
+                                                        "text": "Protest against forced conversions into Hinduism in the guise of ‘Shudhikaran’",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Challenge to the regressive customs of the caste Hindus",
+                                                        "isCorrect": true,
+                                                        "explanation": "Dr Bhimrao Ambedkar led the Mahad Satyagraha in March 1927 to challenge the regressive customs of the caste Hindus."
+                                                    },
+                                                    {
+                                                        "text": "Indefinite strike against rise in local taxes from peasants",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "None of the above",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "question": "Who led the Non-Cooperation Movement in 1921?",
+                                                "options": [
+                                                    {
+                                                        "text": "Gopal Krishna Gokhale",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Mahatma Gandhi",
+                                                        "isCorrect": true,
+                                                        "explanation": "Mahatma Gandhi led the Non-Cooperation Movement in 1921 to protest against the Jallianwala Bagh massacre and the oppressive Rowlatt Act."
+                                                    },
+                                                    {
+                                                        "text": "Bal Gangadhar Tilak",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Jawaharlal Nehru",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "question": "Which of these books was written by Mahatma Gandhi?",
+                                                "options": [
+                                                    {
+                                                        "text": "The Discovery of India",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "My Experiments with Truth",
+                                                        "isCorrect": true,
+                                                        "explanation": "My Experiments with Truth is an autobiography by Mahatma Gandhi written in Gujarati between 1925 and 1929."
+                                                    },
+                                                    {
+                                                        "text": "India Divided",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Glimpses of World History",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "question": "Who founded the Indian National Congress?",
+                                                "options": [
+                                                    {
+                                                        "text": "Mohandas Karamchand Gandhi",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Bal Gangadhar Tilak",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "A.O. Hume",
+                                                        "isCorrect": true,
+                                                        "explanation": "A.O. Hume founded the Indian National Congress in 1885."
+                                                    },
+                                                    {
+                                                        "text": "Lala Lajpat Rai",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "question": "When did the Quit India Movement take place?",
+                                                "options": [
+                                                    {
+                                                        "text": "1919",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "1921",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "1942",
+                                                        "isCorrect": true,
+                                                        "explanation": "Mahatma Gandhi initiated the Quit India Movement in August 1942 to demand that the British leave India immediately."
+                                                    },
+                                                    {
+                                                        "text": "1947",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+
+                                    {
+                                        "title": "General Knowledge Quiz",
+                                        "questions": [
+                                            {
+                                                "question": "What is the capital of France?",
+                                                "options": [
+                                                    {
+                                                        "text": "Rome",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Paris",
+                                                        "isCorrect": true,
+                                                        "explanation": "Paris is the capital city of France"
+                                                    },
+                                                    {
+                                                        "text": "London",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Berlin",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "question": "Who wrote the novel '1984'?",
+                                                "options": [
+                                                    {
+                                                        "text": "George Orwell",
+                                                        "isCorrect": true,
+                                                        "explanation": "George Orwell wrote the novel '1984'"
+                                                    },
+                                                    {
+                                                        "text": "J.D. Salinger",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Arthur Miller",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Ernest Hemingway",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "question": "What is the largest ocean in the world?",
+                                                "options": [
+                                                    {
+                                                        "text": "Pacific Ocean",
+                                                        "isCorrect": true,
+                                                        "explanation": "The Pacific Ocean is the largest ocean in the world"
+                                                    },
+                                                    {
+                                                        "text": "Atlantic Ocean",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Indian Ocean",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Arctic Ocean",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "question": "What is the world's longest river?",
+                                                "options": [
+                                                    {
+                                                        "text": "Nile River",
+                                                        "isCorrect": true,
+                                                        "explanation": "The Nile River is the world's longest river"
+                                                    },
+                                                    {
+                                                        "text": "Amazon River",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Yangtze River",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Mississippi River",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "question": "What is the world's oldest surviving democracy?",
+                                                "options": [
+                                                    {
+                                                        "text": "United States",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "India",
+                                                        "isCorrect": false,
+                                                    },
+                                                    {
+                                                        "text": "Greece",
+                                                        "isCorrect": true,
+                                                        "explanation": "Greece is the world's oldest surviving democracy"
+                                                    },
+                                                    {
+                                                        "text": "England",
+                                                        "isCorrect": false,
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
