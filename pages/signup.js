@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import Signup from '../components/Signup'
+import Signup from '../components/SignUp'
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 function isLoggedIn() {
