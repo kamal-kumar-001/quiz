@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
-const Signup = () => {
+const LogIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
@@ -164,4 +164,4 @@ const Signup = () => {
             </div>
         </div>
     )}
-    export default Signup
+    export default LogIn

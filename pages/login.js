@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import Login from '../components/Login'
+import LogIn from '../components/Login'
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 function isLoggedIn() {
@@ -7,7 +7,7 @@ function isLoggedIn() {
   const token = localStorage.getItem('token');
   return token != null;
 }
-const LogIn = () => {
+const LogInPage = () => {
   const router = useRouter();
   useEffect(() => {
     // Redirect to the login page if the user is not logged in
@@ -29,9 +29,9 @@ const LogIn = () => {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-    <Login/>
+    <LogIn/>
     </>
   )
 }
 
-export default LogIn
+export default LogInPage
