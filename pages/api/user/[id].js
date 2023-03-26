@@ -1,4 +1,4 @@
-import User from '../../../models/User';
+import User from '../../../Models/User';
 import { verify } from 'jsonwebtoken';
 import connectDb from '../../../middleware/mongoose';
 

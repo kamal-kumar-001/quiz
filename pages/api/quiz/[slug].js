@@ -1,5 +1,5 @@
 import connectDb from '../../../middleware/mongoose';
-import Quiz from '../../../models/Quiz';
+import Quiz from '../../../Models/Quiz';
 
 
 const handler = async (req, res) => {

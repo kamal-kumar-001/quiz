@@ -1,4 +1,4 @@
-import Quiz from "../../models/Quiz";
+import Quiz from "../../Models/Quiz";
 import connectDb from "../../middleware/mongoose";
 import { verify } from 'jsonwebtoken';
 const handler = async (req, res) => {
