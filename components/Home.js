@@ -5,7 +5,6 @@ import SectionTitle from "./sectionTitle";
 import { Element } from "react-scroll";
 
 import { benefitOne, benefitTwo } from "./data";
-import Video from "./video";
 import Benefits from "./benefits";
 import Footer from "./footer";
 import Testimonials from "./testimonials";
@@ -13,6 +12,7 @@ import Cta from "./cta";
 import Faq from "./faq";
 import PopupWidget from "./popupWidget";
 import Pricing from "./pricing";
+import Comparison from "./comparison";
 
 //import dynamic from "next/dynamic";
 
@@ -39,11 +39,13 @@ export default function Home() {
       </Head>
 
       <Navbar />
+      <Element name="product">
       <Hero />
+      </Element>
       <Element name="features">
         <SectionTitle
-          pretitle="Nextly Benefits"
-          title=" Why should you use this landing page">
+          pretitle=""
+          title="Built from the ground up with privacy in mind.">
           Nextly is a free landing page & marketing website template for startups
           and indie projects. Its built with Next.js & TailwindCSS. And its
           completely open-source.
@@ -52,24 +54,15 @@ export default function Home() {
         <Benefits data={benefitOne} />
       </Element>
       <Benefits imgPos="right" data={benefitTwo} />
-      <SectionTitle
-        pretitle="Watch a video"
-        title="Learn how to fullfil your needs">
-        This section is to highlight a promo or demo video of your product.
-        Analysts says a landing page with video has 3% more conversion rate. So,
-        do not forget to add one. Just like this.
-      </SectionTitle>
-      <Video />
       <Element name="pricing">
         <SectionTitle
           pretitle="Pricing"
           title="Most Affordable Pricing">
-          This section is to highlight a promo or demo video of your product.
-          Analysts says a landing page with video has 3% more conversion rate. So,
-          do not forget to add one. Just like this.
         </SectionTitle>
         <Pricing />
+        <Comparison  />
       </Element>
+      <Element name="testimonials">
       <SectionTitle
         pretitle="Testimonials"
         title="Here's what our customers said">
@@ -77,6 +70,7 @@ export default function Home() {
         Use this section to highlight your popular customers.
       </SectionTitle>
       <Testimonials />
+      </Element>
 
       <SectionTitle pretitle="FAQ" title="Frequently Asked Questions">
         Answer your customers possible questions here, it will increase the
