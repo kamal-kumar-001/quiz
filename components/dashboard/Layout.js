@@ -12,6 +12,7 @@ import { MdHelp, MdOutlineDiamond } from 'react-icons/md'
 import Link from 'next/link'
 import ThemeChanger from '../DarkSwitch'
 import { useRouter } from 'next/router'
+import Sidebar from './sidebar'
 // import {RiMenu2Fill,RiCloseFill} from 'react-icons/ri'
 
 const Layout = ({ children, user }) => {
@@ -88,78 +89,7 @@ const Layout = ({ children, user }) => {
                     </div>
                 </nav>
                 <div className="flex overflow-hidden bg-white dark:bg-black pt-16">
-                    {/* <aside className={`${!click ? 'sm:w-0 w-0 lg:w-64 xl:w-64 ' : ' w-64'} fixed z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col duration-500 `}> */}
-                    <aside
-                        className={`${!click
-                                ? 'sm:w-0 w-0 lg:w-64 xl:w-64 '
-                                : ' w-64 animate-slide-in '
-                            }fixed z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col duration-500`}
-                    >
-                        <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white dark:bg-black pt-0">
-                            <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-                                <div className="flex-1 mb-44 px-3 bg-white dark:bg-black divide-y space-y-1 ">
-                                    <ul className="space-y-2 pb-2">
-                                        <li>
-                                            <form className="lg:hidden">
-                                                <label htmlFor="mobile-search" className="sr-only">Search</label>
-                                                <div className="relative">
-                                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                        <RiSearchLine className="w-5 h-5 text-gray-500" />
-                                                    </div>
-                                                    <input type="text" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-cyan-600 block w-full pl-10 p-2.5" placeholder="Search" />
-                                                </div>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <Link href="/admin" >
-                                                <span className="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group">
-                                                    <RiPieChartFill className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
-                                                    <span className="ml-3">Dashboard</span>
-                                                </span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/admin/addQuiz" >
-                                                <span className="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group">
-                                                    <RiAddFill className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
-                                                    <span className="ml-3">Add Quiz</span>
-                                                </span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href={"/admin/generateQuiz"}>
-                                                <span className="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group">
-                                                    <BsRobot className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
-                                                    <span className="ml-3">Generate Quizs</span>
-                                                </span>
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className={`w-64 px-3 bg-white dark:bg-black border-t-2  border-gray-700 dark:border-gray-200 bottom-0 space-y-2 pt-2 duration-500  ${!click ? '' : '' }`}>
-                                    {/* <div className={`w-64 px-3 bg-white dark:bg-black border-t-2 border-r-2 border-gray-700 dark:border-gray-200 bottom-0 space-y-2 pt-2 duration-500 fixed ${!click && 'relative lg:fixed xl:fixed duration-500'}`}> */}
-                                    <span href="#" className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
-                                        <MdOutlineDiamond className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
-                                        <span className="ml-4">Upgrade to Pro</span>
-                                    </span>
-                                    <span href="#" className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
-                                        <HiDocumentText className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
-                                        <span className="ml-4">Documentation</span>
-                                    </span>
-                                    <Link href="#" className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
-                                        <MdHelp className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
-                                        <span className="ml-4">Help</span>
-                                    </Link>
-                                    <div className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
-                                        <ThemeChanger >
-                                            Theme
-                                        </ThemeChanger>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-
+                <Sidebar click={click}/>
                     <div className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"></div>
                     {children}
                 </div>

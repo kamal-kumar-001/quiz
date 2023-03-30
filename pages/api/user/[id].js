@@ -8,7 +8,6 @@ const handler = async (req, res) => {
       try {
         // Get the user ID from the URL parameters
         const { id } = req.query;
-  
         // Verify the JWT token from the Authorization header
         const authHeader = req.headers.authorization;
         const token = authHeader && authHeader.split(' ')[1];

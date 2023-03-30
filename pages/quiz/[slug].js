@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import { useMemo, useState } from 'react';
-// import dynamic from 'next/dynamic';
+// import Explanation from '../../components/Explanation';
+import dynamic from 'next/dynamic';
+import { Circle } from 'rc-progress';
 // import { useRouter } from 'next/router';
-// const Explanation = dynamic(() => import('./Explanation'));
+const Explanation = dynamic(() => import('../../components/Explanation'));
 
 
 function Quiz({ quizzes }) {
@@ -29,12 +31,13 @@ function Quiz({ quizzes }) {
         }
     };
 
-    const handleAnswerSelect = (event) => {
+    const handleAnswerSelect = (optionValue) => {
         setSelectedAnswers({
             ...selectedAnswers,
-            [currentQuestion._id]: event.target.value,
+            [currentQuestion._id]: optionValue,
         });
-    };
+    }
+
     const handleRetake = () => {
         setCurrentQuestionIndex(0);
         setSelectedAnswers({});
@@ -43,12 +46,14 @@ function Quiz({ quizzes }) {
     };
     const submitQuiz = async () => {
         try {
-          // Submit the quiz to the server
           const response = await fetch(`/api/quiz/${quizzes.slug}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
+            body: JSON.stringify({
+              answers: Object.entries(selectedAnswers).map(([questionId, optionValue]) => ({ questionId, optionValue })),
+            }),
           });
           if (response.ok) {
             console.log('Quiz submitted successfully');
@@ -59,6 +64,7 @@ function Quiz({ quizzes }) {
           console.error(err);
         }
       };
+      
     const handleFinish = () => {
         let score = 0;
         quizzes?.questions.forEach((question) => {
@@ -71,112 +77,107 @@ function Quiz({ quizzes }) {
         setResult(true)
         submitQuiz();
     };
-  
-
     return (
         <>
-        <Head>
-          <title>{quizzes.title}</title>
-          <meta
-            name="description"
-            content='create a Quiz with next js'
-          />
-          <meta
-            name="theme-color"
-            content="#000"
-          />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <div className='w-[400px] h-1/2 min-h-[500px] dark:bg-gray-800 shadow-md p-5 mx-auto  rounded-md'>
-            <h2 className="text-3xl font-bold mb-4 m-[-20px] bg-blue-500 p-4 rounded-t-md text-white">{quizzes?.title}</h2>
-            {!quizzes ? ('Quiz Not Found') : (
-                <div>
-                {result ? (
+            <style jsx global >
+                {`
+            .quiz__container {
+                user-select: none; 
+                -webkit-touch-callout: none; 
+                -webkit-user-select: none; 
+                -khtml-user-select: none; 
+                -moz-user-select: none; 
+                -ms-user-select: none; 
+                pointer-events: none; 
+              }
+              .allow-clicks {
+                pointer-events: auto; /* allow clicking */
+              }
+              
+            `}
+            </style>
+            <Head>
+                <title>{quizzes?.title}</title>
+                <meta
+                    name="description"
+                    content='create a Quiz with next js'
+                />
+                <meta
+                    name="theme-color"
+                    content="#000"
+                />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <div className=' w-[400px] h-1/2 min-h-[500px] dark:bg-gray-800 shadow-md p-5 mx-auto  rounded-md'>
+                <h2 className="text-3xl font-bold mb-4 m-[-20px] bg-blue-500 p-4 rounded-t-md text-white">{quizzes?.title}</h2>
+                {!quizzes ? ('Quiz Not Found') : (
                     <div>
-                        <h1 className="text-2xl font-bold mb-2">Your score is {score} out of {quizzes.questions.length}</h1>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={handleRetake}>Retake Quiz</button>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewExplanation}>View Explanation</button>
-                        {viewExplanation ? (
-                            <div >
-                                {quizzes.questions.map((question, index) => (
-                                    <div key={question._id} className="my-4">
-                                        <p className="font-bold mb-2">Question {index + 1} of {quizzes.questions.length}</p>
-                                        <p> Question: {question.question}</p>
-                                        <ul className="list-none pl-5">
-                                            {question.options.map((option) => (
-                                                <li key={option._id} className="my-2 ">
-                                                    <div className="flex items-center gap-2">                                                
-                                                    <input
-                                                        type="radio"
-                                                        // name="option"
-                                                        name={question._id}
-                                                        id={option._id}
-                                                        value={option.text}
-                                                        checked={
-                                                            selectedAnswers[question._id] === option.text ||
-                                                            (option.isCorrect && selectedAnswers[question._id] === undefined)
-                                                        }
-                                                        disabled
-                                                        className="h-5 w-5 border-none cursor-pointer bg-gray-300 appearance-none checked:bg-blue-500 rounded-full  focus:outline-none"
-                                                    />
-                                                    <label htmlFor={option._id}>
-                                                        {option.text} {option.isCorrect && <span className="text-green-600 font-bold ml-2">(Correct)</span>}
-                                                        {!option.isCorrect && selectedAnswers[question._id] === option.text && (
-                                                            <span className="text-red-600 font-bold ml-2">(Selected)</span>
-                                                        )}
-                                                    </label>
-                                                    </div>
-                                                    <p className="text-gray-600"> {option.explanation ?  `Explanation: ${option.explanation }`: ''}</p>
-                                                </li>
-                                            ))}
-                                        </ul>
+                        {result ? (
+                            <div className='space-y-5' >
+                                <div className='flex flex-col gap-5 items-center justify-center'>
+                                    <div className='relative w-24 h-24'>
+                                        <Circle
+                                            className='absolute top-0 left-0 w-full h-full text-center'
+                                            percent={(score / quizzes.questions.length) * 100}
+                                            strokeWidth={4}
+                                            trailWidth={4}
+                                            strokeColor="rgb(59 130 246)"
+                                            gapPosition='bottom'
+                                        />
+                                        <span className='text-xl absolute top-0 left-0 w-full h-full flex items-center justify-center'>
+                                            {Math.round(score / quizzes.questions.length * 100)}%
+                                        </span>
                                     </div>
-                                ))}
+                                    {score / quizzes.questions.length * 100 > 50 ? (
+                                        <span className='text-xl'>Well done!</span>
+                                    ) : (
+                                        <span className='text-xl'>You can do better.</span>
+                                    )}
+                                </div>
+
+                                <h1 className="text-2xl font-bold mb-2">Your score is {score} out of {quizzes.questions.length}</h1>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={handleRetake}>Retake Quiz</button>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewExplanation}>{!viewExplanation ? 'View' : 'Hide'} Explanation</button>
+                                {viewExplanation && <Explanation quizzes={quizzes} selectedAnswers={selectedAnswers} />}
                             </div>
                         ) : (
-                            <div>
+                            <div className='space-y-4 quiz__container'>
+                                <p className="font-bold mb-2">Question {currentQuestionIndex + 1} of {quizzes?.questions.length}</p>
+                                <div className='min-h-[400px]'>
+
+                                    <p className='text-xl'>Que: {currentQuestion.question}</p>
+                                    <ul className="list-none pl-5 space-y-4">
+                                        {currentQuestion.options.map((option) => (
+                                            <li key={option._id} className="my-2 flex items-center gap-4">
+                                                <input
+                                                    type="radio"
+                                                    name="option"
+                                                    id={option._id}
+                                                    value={option.text}
+                                                    checked={selectedAnswers[currentQuestion._id] === option.text}
+                                                    onChange={() => handleAnswerSelect(option.text)}
+                                                    className="allow-clicks h-5 w-5 border-none cursor-pointer bg-gray-300 appearance-none checked:bg-blue-500 rounded-full  focus:outline-none"
+                                                />
+                                                <label className='cursor-pointer allow-clicks'
+                                                    htmlFor={option._id}
+                                                    onClick={() => handleAnswerSelect(option.text)}>{option.text}</label>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="flex items-center ">
+                                    <button className="allow-clicks bg-blue-500 flex-1 mr-8  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+                                        onClick={handleFinish}>Finish </button>
+                                    <button className="allow-clicks bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 disabled:bg-blue-300 disabled:hover:bg-blue-300"
+                                        onClick={handlePrevious} disabled={currentQuestionIndex === 0}>Previous</button>
+                                    <button className="allow-clicks bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 disabled:bg-blue-300 disabled:hover:bg-blue-300"
+                                        onClick={handleNext} disabled={currentQuestionIndex === quizzes?.questions.length - 1}>Next</button>
+                                </div>
                             </div>
                         )}
-    
-                    </div>
-    
-                ) : (
-                    <div className='space-y-4 '>
-                        <p className="font-bold mb-2">Question {currentQuestionIndex + 1} of {quizzes?.questions.length}</p>
-                        <div className='min-h-[400px]'>
-    
-                        <p className='text-xl'>Que: {currentQuestion.question}</p>
-                        <ul className="list-none pl-5">
-                            {currentQuestion.options.map((option) => (
-                                <li key={option._id} className="my-2 flex items-center gap-2">
-                                    <input
-                                        type="radio"
-                                        name="option"
-                                        id={option._id}
-                                        value={option.text}
-                                        checked={selectedAnswers[currentQuestion._id] === option.text}
-                                        onChange={handleAnswerSelect}
-                                        className="h-5 w-5 border-none cursor-pointer bg-gray-300 appearance-none checked:bg-blue-500 rounded-full  focus:outline-none"
-                                    />
-                                    <label className=' ' htmlFor={option._id}>{option.text}</label>
-                                </li>
-                            ))}
-                        </ul>
-                        </div>
-                        <div className="flex items-center ">
-    
-                        <button className="bg-blue-500 flex-1 mr-8  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
-                            onClick={handleFinish}>Finish </button>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 disabled:bg-blue-300 disabled:hover:bg-blue-300"
-                            onClick={handlePrevious} disabled={currentQuestionIndex === 0}>Previous</button>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 disabled:bg-blue-300 disabled:hover:bg-blue-300"
-                            onClick={handleNext} disabled={currentQuestionIndex === quizzes?.questions.length - 1}>Next</button>
-                        </div>
                     </div>
                 )}
-                </div>
-            )}
-        </div>
+            </div>
         </>
     );
 }
@@ -184,6 +185,7 @@ function Quiz({ quizzes }) {
 export async function getServerSideProps({ params }) {
     const { slug } = params;
     // const res = await fetch(`${baseUrl}/api/blog/${slug}`);
+    // const res = await fetch(`http://localhost:3000/api/quiz/${slug}`);
     const res = await fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/quiz/${slug}`);
     const data = await res.json();
     return {

@@ -8,10 +8,10 @@ import { useRouter } from 'next/router';
 const AdminPage = () => {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [quizzes, setQuizzes] = useState(null);
   useEffect(() => {
     const token = localStorage.getItem('token');
     const decodedToken = jwt.decode(token);
-
     // Extract the user ID from the payload
     const userId = decodedToken?.userId;
     // Fetch user data from API route
@@ -29,16 +29,6 @@ const AdminPage = () => {
         router.push('/login');
       }
     };
-
-    fetchUser();
-  }, [router]);
-  const [quizzes, setQuizzes] = useState(null);
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const decodedToken = jwt.decode(token);
-    // Extract the user ID from the payload
-    const userId = decodedToken?.userId;
-    // Fetch user data from API route
     const fetchQuizzes = async () => {
       try {
         const res = await fetch('/api/quiz', {
@@ -53,8 +43,8 @@ const AdminPage = () => {
         router.push('/admin');
       }
     };
-
     fetchQuizzes();
+    fetchUser();
   }, [router]);
   return (
     <AdminRoute>

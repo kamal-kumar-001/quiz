@@ -10,7 +10,7 @@ const handler = async (req, res) => {
       .split(' ')
       .join('-');
     const timestamp = Date.now().toString(36);
-    return `${slug}-${timestamp}`;
+    return `${slug}${timestamp}`;
   }
   switch (method) {
     case "GET":
@@ -20,7 +20,7 @@ const handler = async (req, res) => {
         const decoded = verify(token, 'secretKey');
         const userId = decoded.userId;
         const quizzes = await Quiz.find({ user: userId }).sort({
-          position: 1,
+          position: -1,
         });
         res.status(200).json({ quizzes: quizzes });
       } catch (error) {
@@ -50,14 +50,19 @@ const handler = async (req, res) => {
     case "PUT":
       try {
         const { id } = req.query;
+        const authHeader = req.headers.authorization;
+        const token = authHeader && authHeader.split(' ')[1];
+        const decoded = verify(token, 'secretKey');
+        const userId = decoded.userId;
         const quiz = await Quiz.findOneAndUpdate(
-          { _id: id, user: req.user._id },
+          { _id: id, user: userId },
           req.body,
           {
             new: true,
             runValidators: true,
           }
         );
+
         if (!quiz) {
           return res.status(400).json({ success: false });
         }

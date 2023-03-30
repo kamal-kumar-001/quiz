@@ -29,6 +29,10 @@ const QuizSchema = new mongoose.Schema({
           explanation: {
             type: String,
           },
+          selectedCount: {
+            type: Number,
+            default: 0,
+          },
         },
       ],
     },
@@ -48,9 +52,20 @@ const QuizSchema = new mongoose.Schema({
   }
 }, {timestamps: true});
 
-QuizSchema.methods.played = function() {
+QuizSchema.methods.played = async function(answers) {
   this.performance += 1;
-  return this.updateOne({ performance: this.performance }).exec();
+  for (let i = 0; i < answers.length; i++) {
+    const { questionId, optionValue } = answers[i];
+    const questionIndex = this.questions.findIndex(q => q._id.equals(questionId));
+    if (questionIndex !== -1) {
+      const optionIndex = this.questions[questionIndex].options.findIndex(o => o.text === optionValue);
+      if (optionIndex !== -1) {
+        const option = this.questions[questionIndex].options[optionIndex];
+        option.selectedCount += 1;
+      }
+    }
+  }
+  await this.save();
 };
 
 mongoose.models = {};

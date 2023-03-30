@@ -19,8 +19,8 @@ const UserSchema = new mongoose.Schema({
     trim: true
   },
   subscriptions: {
-    type: Boolean,
-    default: false
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Subscription',
   },
   isAdmin: {
     type: Boolean,

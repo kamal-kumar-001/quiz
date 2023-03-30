@@ -18,8 +18,8 @@ const Pricing = () => {
   
 	const professionalPlan = {
 	  name: 'Professional',
-	  priceMonthly: 5,
-	  priceAnnual: 50,
+	  priceMonthly: 10,
+	  priceAnnual: 100,
 	  features: [
 		'Create and publish up to 20 quizzes',
 		'Add up to 50 questions per quiz',
@@ -32,8 +32,8 @@ const Pricing = () => {
   
 	const businessPlan = {
 	  name: 'Business',
-	  priceMonthly: 10,
-	  priceAnnual: 100,
+	  priceMonthly: 20,
+	  priceAnnual: 200,
 	  features: [
 		'Create and publish unlimited quizzes',
 		'Add unlimited questions per quiz',
@@ -116,6 +116,7 @@ const Pricing = () => {
 					</li>
 				))}
 				</ul>
+
 				<Link href={'/signup'} className="px-8 py-3 mt-12 text-lg font-semibold uppercase border rounded dark:border-indigo-400 border-indigo-400">Try For Free</Link>
 			</div>
 		</div>

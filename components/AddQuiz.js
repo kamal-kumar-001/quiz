@@ -51,18 +51,6 @@ const AddQuiz = () => {
       )
     );
   };
-
-  // const handleOptionChange = (questionIndex, optionIndex, field, value) => {
-  //   setQuestions((prevQuestions) =>
-  //     prevQuestions.map((question, i) =>
-  //       i === questionIndex ? {
-  //         ...question, options: question.options.map((option, j) =>
-  //           j === optionIndex ? { ...option, [field]: value } : option
-  //         )
-  //       } : question
-  //     )
-  //   );
-  // };
   const handleOptionChange = (questionIndex, optionIndex, field, value) => {
     setQuestions((prevQuestions) =>
       prevQuestions.map((question, i) =>
@@ -132,7 +120,6 @@ const AddQuiz = () => {
                 </button>
               )}
             </div>
-
             <div className="mb-4">
               <label htmlFor={`question-${questionIndex}`} className="block font-medium">
                 Question
@@ -196,7 +183,7 @@ const AddQuiz = () => {
                     </div>
                     </div>
                     ))}
-                            <div className="mb-4">
+        <div className="mb-4">
           <button
             type="button"
             onClick={() => handleAddOptionForm(questionIndex)}

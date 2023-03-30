@@ -9,14 +9,10 @@ const handler = async (req, res) => {
   if (req.method === 'POST' ) {
     try {
       // Find the quiz by its slug
+      const { answers } = req.body;
       const quiz = await Quiz.findOne({ slug  });
-    
-      // Update the quiz's performance using the played() method
-      quiz.played();
-    
-      // Save the quiz
-      // await quiz.save();
-    
+      
+      await quiz.played(answers);
       // Return a success message
       return res.status(200).json({ message: 'Quiz submitted successfully' });
     } catch (err) {
