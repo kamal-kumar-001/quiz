@@ -10,9 +10,10 @@ function isLoggedIn() {
 const LogInPage = () => {
   const router = useRouter();
   useEffect(() => {
+    // const token = localStorage.getItem('token');
     // Redirect to the login page if the user is not logged in
     if (isLoggedIn()) {
-      router.push('/admin');
+      router.push(`/admin`);
     }
   }, [router]);
   return (

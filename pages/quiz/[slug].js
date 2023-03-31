@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { useMemo, useState } from 'react';
-// import Explanation from '../../components/Explanation';
 import dynamic from 'next/dynamic';
 import { Circle } from 'rc-progress';
 // import { useRouter } from 'next/router';
@@ -10,11 +9,15 @@ const Explanation = dynamic(() => import('../../components/Explanation'));
 function Quiz({ quizzes }) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const currentQuestion = useMemo(() => quizzes?.questions[currentQuestionIndex], [quizzes?.questions, currentQuestionIndex]);
-
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [score, setScore] = useState(0);
     const [result, setResult] = useState(false);
     const [viewExplanation, setViewExplanation] = useState(false);
+
+
+    function createMarkup(c) {
+        return { __html: c };
+      }
 
     const handleViewExplanation = () => {
         setViewExplanation(!viewExplanation)
@@ -144,8 +147,10 @@ function Quiz({ quizzes }) {
                             <div className='space-y-4 quiz__container'>
                                 <p className="font-bold mb-2">Question {currentQuestionIndex + 1} of {quizzes?.questions.length}</p>
                                 <div className='min-h-[400px]'>
-
-                                    <p className='text-xl'>Que: {currentQuestion.question}</p>
+                                    <div className='flex gap-2'>
+                                    <span>Que:</span>
+                                    <div className='text-xl' dangerouslySetInnerHTML={createMarkup(currentQuestion.question)}></div>
+                                    </div>
                                     <ul className="list-none pl-5 space-y-4">
                                         {currentQuestion.options.map((option) => (
                                             <li key={option._id} className="my-2 flex items-center gap-4">

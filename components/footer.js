@@ -14,15 +14,13 @@ export default function Footer() {
               {" "}
               <Link href="/">
                 <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-                  <span>Nextly</span>
+                  <span>Quiz</span>
                 </span>
               </Link>
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              Nextly is a free landing page & marketing website template for
-              startups and indie projects. Its built with Next.js & TailwindCSS.
-              And its completely open-source.
+ The app is ideal for individuals and businesses looking to engage with their audience and increase brand exposure through interactive quizzes.
             </div>
           </div>
 

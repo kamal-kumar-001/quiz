@@ -35,21 +35,23 @@ export default function Faq() {
 
 const faqdata = [
   {
-    question: "Is this template completely free to use?",
-    answer: "Yes, this template is completely free to use.",
+    question: "How can I create a quiz on your platform?",
+    answer: "To create a quiz, you first need to sign up for an account and then log in to the admin page. From there, you can add a new quiz, give it a title and description, and then add as many questions and options as you want. Once you're finished, you can save your quiz and get an embed URL to share it with others.",
   },
   {
-    question: "Can I use it in a commercial project?",
-    answer: "Yes, this you can.",
+    question: "Can I edit or delete a quiz after I've created it?",
+    answer: "Yes, you can edit or delete any quiz you've created from the admin page. Simply find the quiz you want to modify, click the 'Update' button, and make any changes you need. If you want to delete a quiz, you can do so by clicking the 'Delete' button.",
   },
   {
-    question: "What is your refund policy? ",
-    answer:
-      "If you're unhappy with your purchase for any reason, email us within 90 days and we'll refund you in full, no questions asked.",
+    question: "How many questions can I add to a quiz? ",
+    answer: "You can add as many questions as you want to a quiz. We recommend having at least 5 questions to make it challenging and engaging, but you can add more if you'd like.",
   },
   {
-    question: "Do you offer technical support? ",
-    answer:
-      "No, we don't offer technical support for free downloads. Please purchase a support plan to get 6 months of support.",
+    question: "Are the quizzes customizable? ",
+    answer: "Yes, you can customize your quizzes by adding your own questions, options, and descriptions. You can also choose the layout and design of the quiz to fit your needs.",
+  },
+  {
+    question: "Is there a limit to how many quizzes I can create?",
+    answer: "There's no limit to how many quizzes you can create on our platform. Feel free to create as many quizzes as you need for your website or app.",
   },
 ];

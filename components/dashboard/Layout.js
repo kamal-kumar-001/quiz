@@ -1,21 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {
-    RiPieChartFill,
     RiMenu2Fill, RiCloseFill,
-    RiSearchLine,
-    RiAddFill
+    RiSearchLine
 } from 'react-icons/ri'
-import { BsRobot } from 'react-icons/bs'
 import { FcManager } from 'react-icons/fc'
-import { HiDocumentText } from 'react-icons/hi'
-import { MdHelp, MdOutlineDiamond } from 'react-icons/md'
 import Link from 'next/link'
-import ThemeChanger from '../DarkSwitch'
 import { useRouter } from 'next/router'
 import Sidebar from './sidebar'
+// import jwt from 'jsonwebtoken';
+// import AdminRoute from './adminRoute'
 // import {RiMenu2Fill,RiCloseFill} from 'react-icons/ri'
 
-const Layout = ({ children, user }) => {
+const Layout = ({ children,user  }) => {
     const router = useRouter();
     const [click, setClick] = useState(false);
     const handleClick = () => {
@@ -28,11 +24,14 @@ const Layout = ({ children, user }) => {
     const handleSignOut = () => {
         // Remove the JWT token from the local storage
         localStorage.removeItem('token');
+      
         // Redirect the user to the login page
         router.push('/');
       };
       
+      
     return (
+        // <AdminRoute>
         <div>
             <div>
                 <nav className="bg-white dark:bg-black border-b border-gray-200 fixed z-30 w-full">
@@ -95,6 +94,7 @@ const Layout = ({ children, user }) => {
                 </div>
             </div>
         </div>
+        // </AdminRoute>
     )
 }
 

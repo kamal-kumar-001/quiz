@@ -20,7 +20,7 @@ const handler = async (req, res) => {
         const decoded = verify(token, 'secretKey');
         const userId = decoded.userId;
         const quizzes = await Quiz.find({ user: userId }).sort({
-          position: -1,
+          createdAt: -1,
         });
         res.status(200).json({ quizzes: quizzes });
       } catch (error) {

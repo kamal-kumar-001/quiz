@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
+import RichEditor from './RichEditor';
 
-const UpdateQuiz = ({ quizzes }) => {
+const QuizForm = ({ quizzes, mode }) => {
     // console.log(quizzes);
-    const [title, setTitle] = useState(quizzes?.title);
+    const [title, setTitle] = useState('');
     const [questions, setQuestions] = useState([{ question: '', options: [{ text: '', isCorrect: false, explanation: '' }] }]);
     useEffect(() => {
-        setQuestions(quizzes?.questions);
-    }, [quizzes?.questions]);
+        if (mode === 'update') {
+            setTitle(quizzes?.title);
+            setQuestions(quizzes?.questions);
+        }
+    }, [mode, quizzes]);
     const handleAddQuestionForm = () => {
         setQuestions([...questions, { question: '', options: [{ text: '', isCorrect: false, explanation: '' }] }]);
     };
@@ -68,13 +72,23 @@ const UpdateQuiz = ({ quizzes }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const newQuiz = { title, questions };
+        const Quiz = { title, questions };
+        const token = localStorage.getItem('token');
         try {
-            const token = localStorage.getItem('token'); // get the token from local storage
-            const headers = { Authorization: `Bearer ${token}` }; // set the token in the Authorization header
-            const response = await axios.put(`/api/quiz?id=${quizzes._id}`, newQuiz, { headers }); // include the headers in the request
-            console.log(response.message);
+            const headers = { Authorization: `Bearer ${token}` };
+            let url = `/api/quiz`;
+            let method = 'post';
+            if (mode === 'update') {
+                url += `?id=${quizzes?._id}`;
+                method = 'put';
+            }
+            const response = await axios({
+                method,
+                url,
+                data: Quiz,
+                headers,
+            });
+            console.log(response.err);
             Router.push('/admin/');
         } catch (err) {
             console.error(err);
@@ -82,16 +96,18 @@ const UpdateQuiz = ({ quizzes }) => {
     };
 
 
+
     return (
         <div className="max-w-3xl mx-auto my-8">
-            <h1 className="text-2xl font-bold mb-4">Update Quiz</h1>
+            
+            <h1 className="text-2xl font-bold mb-4">{mode === 'update' ? 'Update' : 'Add'} Quiz</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4 absolute top-5 right-5">
                     <button
                         type="submit"
                         className="bg-blue-500 text-white py-2 px-4 rounded"
                     >
-                        Update Quiz
+                        {mode === 'update' ? 'Update' : 'Add'} Quiz
                     </button>
                 </div>
                 <div className="mb-4">
@@ -126,7 +142,14 @@ const UpdateQuiz = ({ quizzes }) => {
                             <label htmlFor={`question-${questionIndex}`} className="block font-medium">
                                 Question
                             </label>
-                            <input
+                            <RichEditor
+                                id={`question-${questionIndex}`}
+                                name={`question-${questionIndex}`}
+                                value={question.question}
+                                onChange={(value) => handleQuestionChange(questionIndex, 'question', value)}
+                            />
+                            
+                            {/* <input
                                 type="text"
                                 name={`question-${questionIndex}`}
                                 id={`question-${questionIndex}`}
@@ -134,7 +157,7 @@ const UpdateQuiz = ({ quizzes }) => {
                                 onChange={(e) => handleQuestionChange(questionIndex, 'question', e.target.value)}
                                 className="w-full border-gray-300 rounded-sm shadow-sm py-2 px-3"
                                 required
-                            />
+                            /> */}
                         </div>
 
                         {question.options.map((option, optionIndex) => (
@@ -146,6 +169,7 @@ const UpdateQuiz = ({ quizzes }) => {
                                         name={`question-${questionIndex}`}
                                         id={`question-${questionIndex}-option-${optionIndex}`}
                                         checked={option.isCorrect}
+                                        // defaultChecked={option.isCorrect}
                                         onChange={(e) => handleOptionChange(questionIndex, optionIndex, 'isCorrect', e.target.checked)}
                                         className="h-5 w-5 mr-3 border-none cursor-pointer bg-gray-300 appearance-none checked:bg-blue-500 rounded-full  focus:outline-none"
                                     />
@@ -165,14 +189,20 @@ const UpdateQuiz = ({ quizzes }) => {
                                         <label htmlFor={`question-${questionIndex}-option-${optionIndex}-explanation`} className="block font-medium">
                                             Explanation (optional)
                                         </label>
-                                        <textarea
+                                        <RichEditor
+                                            name={`question-${questionIndex}-option-${optionIndex}-explanation`}
+                                            id={`question-${questionIndex}-option-${optionIndex}-explanation`}
+                                            value={option.explanation}
+                                            onChange={(e) => handleOptionChange(questionIndex, optionIndex, 'explanation', e)}
+                                        />
+                                        {/* <textarea
                                             name={`question-${questionIndex}-option-${optionIndex}-explanation`}
                                             id={`question-${questionIndex}-option-${optionIndex}-explanation`}
                                             rows="2"
                                             value={option.explanation}
                                             onChange={(e) => handleOptionChange(questionIndex, optionIndex, 'explanation', e.target.value)}
                                             className="w-full border-gray-300 rounded-sm shadow-sm py-2 px-3"
-                                        />
+                                        /> */}
                                     </div>
                                     {question.options.length > 1 && (
                                         <button
@@ -209,4 +239,4 @@ const UpdateQuiz = ({ quizzes }) => {
     );
 };
 
-export default UpdateQuiz;
+export default QuizForm;

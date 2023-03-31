@@ -62,14 +62,14 @@ const Admin = ({ quizzes, user }) => {
                   </div>
                   <div className="flex justify-end mt-4">
                     <Link target={'_blank'} href={`/quiz/${quiz.slug}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                      Test
-                    </button>
-              </Link>
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                        Test
+                      </button>
+                    </Link>
                     {/* <button onClick={() => handleShowModal(quiz._id)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
                       Test
                     </button> */}
-                    <button onClick={() => handleShowEmbedModal(quiz._id)}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                    <button onClick={() => handleShowEmbedModal(quiz._id)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
                       Embed Quiz
                     </button>
                     <Link href={`/admin/updateQuiz/${quiz.slug}`}>
@@ -89,8 +89,8 @@ const Admin = ({ quizzes, user }) => {
               </div>
             ))}
           </div>
-            {/* Quiz Modal */}
-  {/* {modalContent && (
+          {/* Quiz Modal */}
+          {/* {modalContent && (
     <Modal
       isOpen={modalOpen}
       onClose={() => setModalOpen(false)}
@@ -103,31 +103,31 @@ const Admin = ({ quizzes, user }) => {
     </Modal>
   )} */}
 
-  {/* Embed Quiz Modal */}
-  {embedModalContent && (
-    <Modal
-      isOpen={embedModalOpen}
-      onClose={() => setEmbedModalOpen(false)}
-      title={`Embed Quiz - ${embedModalContent.title}`}
-    >
-        <p className='text-gray-900'>
-          Modify the Data as per Your Need
-          </p>
-      <div className="relative border-2 border-black  py-2">
-        <pre className="">
-          <code className=" p-2 break-words font-mono text-gray-900">
-            {`<iframe title="${embedModalContent.title}" src="http://localhost:3000/quiz/${embedModalContent.slug}" height="600px" width="500px"></iframe>`}
-          </code>
-        </pre>
-        <button
-          onClick={copyToClipboard}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded absolute top-2 right-2"
-        >
-          {copied ? 'Copied!' : 'Copy'}
-        </button>
-      </div>
-    </Modal>
-  )}
+          {/* Embed Quiz Modal */}
+          {embedModalContent && (
+            <Modal
+              isOpen={embedModalOpen}
+              onClose={() => setEmbedModalOpen(false)}
+              title={`Embed Quiz - ${embedModalContent.title}`}
+            >
+              <p className='text-gray-900'>
+                Modify the Data as per Your Need
+              </p>
+              <div className="relative border-2 border-black  py-2">
+                <pre className="">
+                  <code className=" p-2 break-words font-mono text-gray-900">
+                    {`<iframe title="${embedModalContent.title}" src="http://localhost:3000/quiz/${embedModalContent.slug}" height="600px" width="500px"></iframe>`}
+                  </code>
+                </pre>
+                <button
+                  onClick={copyToClipboard}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded absolute top-2 right-2"
+                >
+                  {copied ? 'Copied!' : 'Copy'}
+                </button>
+              </div>
+            </Modal>
+          )}
 
         </div>
       </Layout>

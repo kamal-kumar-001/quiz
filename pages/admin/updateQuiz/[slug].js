@@ -1,14 +1,14 @@
 import React from 'react'
 import AdminRoute from '../../../components/dashboard/adminRoute';
 import Layout from '../../../components/dashboard/Layout';
-import UpdateQuiz from '../../../components/UpdateQuiz'
+import QuizForm from '../../../components/dashboard/QuizForm';
 
 const UpdateQuizPage = ({quizzes}) => {
   return (
     <AdminRoute>
     <Layout>
     <div className='h-full w-full  bg-gray-50 dark:bg-gray-500 relative overflow-y-auto p-8 lg:ml-64'>
-    <UpdateQuiz quizzes={quizzes} />
+    <QuizForm mode={'update'} quizzes={quizzes} />
     </div>
     </Layout>
     </AdminRoute>

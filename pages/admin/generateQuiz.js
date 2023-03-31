@@ -9,7 +9,6 @@ const QuizGenerator = () => {
     const [quizData, setQuizData] = useState('');
     const [quizzes, setQuizzes] = useState('');
 
-
     const generateQuiz = async () => {
         // Make API request to OpenAI to generate quiz content
         const response = await axios.post('https://api.openai.com/v1/completions', {

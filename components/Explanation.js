@@ -1,15 +1,21 @@
 import React from 'react'
 
-const Explanation = ({quizzes, selectedAnswers}) => {
+const Explanation = ({ quizzes, selectedAnswers }) => {
+    function createMarkup(c) {
+        return { __html: c };
+    }
     return (
         <div >
             {quizzes?.questions.map((question, index) => (
                 <div key={question._id} className="my-4">
                     <p className="font-bold mb-2">Question {index + 1} of {quizzes.questions.length}</p>
-                    <p> Question: {question.question}</p>
+                    <div className='flex gap-2'>
+                        <span>Question:</span>
+                        <div className='text-xl' dangerouslySetInnerHTML={createMarkup(question.question)}></div>
+                    </div>
                     <ul className="list-none pl-5">
                         {question.options.map((option) => (
-                            <li key={option._id} className="my-2 ">
+                            <li key={option._id} className="my-2 space-y-3">
                                 <div className="flex items-center gap-2">
                                     <input
                                         type="radio"
@@ -31,7 +37,12 @@ const Explanation = ({quizzes, selectedAnswers}) => {
                                         )}
                                     </label>
                                 </div>
-                                <p className="text-gray-600"> {option.explanation ? `Explanation: ${option.explanation}` : ''}</p>
+                                {option.explanation ? (
+                                    <div >
+                                    <span >Explanation:</span>
+                                    <div className='m-4 dark:text-gray-200 text-gray-600 ' dangerouslySetInnerHTML={createMarkup(option.explanation)}></div>
+                                </div>
+                                ):('')}
                             </li>
                         ))}
                     </ul>
