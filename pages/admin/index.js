@@ -44,7 +44,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         user: userData?.user || null,
-        quizzes: quizzesData.quizzes,
+        quizzes: quizzesData?.quizzes || null,
         token,
       },
     };
