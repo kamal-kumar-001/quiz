@@ -66,7 +66,7 @@ const handler = async (req, res) => {
         if (!quiz) {
           return res.status(400).json({ success: false });
         }
-        res.status(200).json({ data: quiz });
+        res.status(200).json({ success: true, message: "Quiz Updated successfully" });
       } catch (error) {
         res.status(400).json({ success: false });
       }

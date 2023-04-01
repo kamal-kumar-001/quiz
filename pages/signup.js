@@ -1,20 +1,7 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import Signup from '../components/SignUp'
-import { useRouter } from 'next/router';
 import Head from 'next/head';
-function isLoggedIn() {
-  // Check if the user is logged in by checking for a token in local storage
-  const token = localStorage.getItem('token');
-  return token != null;
-}
 const SignUp = () => {
-  const router = useRouter();
-  useEffect(() => {
-    // Redirect to the login page if the user is not logged in
-    if (isLoggedIn()) {
-      router.push('/admin');
-    }
-  }, [router]);
   return (
     <>
      <Head>
@@ -33,5 +20,21 @@ const SignUp = () => {
     </>
   )
 }
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const token = req.cookies.token;
 
+  if (token != null) {
+    return {
+      redirect: {
+        destination: '/admin',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 export default SignUp

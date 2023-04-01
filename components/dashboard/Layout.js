@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState  } from 'react'
 import {
     RiMenu2Fill, RiCloseFill,
     RiSearchLine
@@ -7,9 +7,6 @@ import { FcManager } from 'react-icons/fc'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Sidebar from './sidebar'
-// import jwt from 'jsonwebtoken';
-// import AdminRoute from './adminRoute'
-// import {RiMenu2Fill,RiCloseFill} from 'react-icons/ri'
 
 const Layout = ({ children,user  }) => {
     const router = useRouter();
@@ -21,17 +18,22 @@ const Layout = ({ children,user  }) => {
     const handleUserMenu = () => {
         setUserMenu(!userMenu);
     };
-    const handleSignOut = () => {
-        // Remove the JWT token from the local storage
-        localStorage.removeItem('token');
-      
-        // Redirect the user to the login page
-        router.push('/');
-      };
-      
-      
+    
+    const handleSignOut = async () => {
+      try {
+        const response = await fetch('/api/auth/signout', {
+          method: 'POST',
+        });
+        if (response.status === 200) {
+          router.push('/');
+        } else {
+          console.error('Failed to sign out.');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
     return (
-        // <AdminRoute>
         <div>
             <div>
                 <nav className="bg-white dark:bg-black border-b border-gray-200 fixed z-30 w-full">
@@ -94,7 +96,6 @@ const Layout = ({ children,user  }) => {
                 </div>
             </div>
         </div>
-        // </AdminRoute>
     )
 }
 

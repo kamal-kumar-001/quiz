@@ -6,7 +6,7 @@ import Modal from './basic/Modal';
 import Alert from './basic/Alert';
 import Layout from './dashboard/Layout'
 
-const Admin = ({ quizzes, user }) => {
+const Admin = ({ quizzes, user,token }) => {
   // const [modalOpen, setModalOpen] = useState(false);
   // const [modalContent, setModalContent] = useState(null);
 
@@ -15,7 +15,7 @@ const Admin = ({ quizzes, user }) => {
   const [alert, setAlert] = useState(null);
   const handleDelete = async (id) => {
     try {
-      const token = localStorage.getItem('token'); // get the token from local storage
+      // const token = localStorage.getItem('token'); // get the token from local storage
       const headers = { Authorization: `Bearer ${token}` };
       await axios.delete(`/api/quiz/?id=${id}`, { headers });
       Router.push('/admin/');
@@ -50,7 +50,7 @@ const Admin = ({ quizzes, user }) => {
         <div className='h-full w-full  bg-gray-50 dark:bg-slate-500 relative overflow-y-auto p-8 lg:ml-64'>
 
           <h1 className="text-2xl font-bold mb-4 ">Quiz List</h1>
-          {alert && <Alert type={alert.type} message={alert.message} onClose={() => setAlert(null)} />}
+          {alert && <Alert type={alert.type} message={alert.message}  onClose={() => setAlert(null)} />}
           <div className="flex flex-wrap  gap-4">
             {quizzes && quizzes.map((quiz) => (
               <div key={quiz._id} className="bg-white dark:bg-slate-600 rounded-lg overflow-hidden shadow-lg">

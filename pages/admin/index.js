@@ -1,20 +1,17 @@
-import React from 'react'
-import Admin from '../../components/Admin'
+import React from 'react';
+import Admin from '../../components/Admin';
 import jwt from 'jsonwebtoken';
-import AdminRoute from '../../components/dashboard/adminRoute';
 
-export default function AdminPage({ quizzes, user }) {
-  return (
-    <AdminRoute>
-      <Admin quizzes={quizzes} user={user} />
-    </AdminRoute>
-  )
+export default function AdminPage({ quizzes, user, token }) {
+  return <Admin quizzes={quizzes} user={user} token={token} />;
 }
 
 export async function getServerSideProps(context) {
   const { req } = context;
   const token = req.cookies.token;
-  // console.log(req.cookies)
+  let url = req.headers.referer;
+  let arr = url.split('/');
+  url = `${arr[0]}//${arr[2]}`;
   if (!token) {
     return {
       redirect: {
@@ -29,14 +26,12 @@ export async function getServerSideProps(context) {
 
   try {
     const [userRes, quizzesRes] = await Promise.all([
-      // fetch(`http://localhost:3000/api/user/${userId}`, {
-      fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/user/${userId}`, {
+      fetch(`${url}/api/user/${userId}`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }),
-      // fetch('http://localhost:3000/api/quiz', {
-      fetch('https://quiz-mrnormal128-gmailcom.vercel.app/api/quiz', {
+      fetch(`${url}/api/quiz`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,6 +45,7 @@ export async function getServerSideProps(context) {
       props: {
         user: userData?.user || null,
         quizzes: quizzesData.quizzes,
+        token,
       },
     };
   } catch (err) {

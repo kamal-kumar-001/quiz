@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Layout from '../../components/dashboard/Layout';
-import AdminRoute from '../../components/dashboard/adminRoute';
 
 const QuizGenerator = () => {
     const [generatedText, setGeneratedText] = useState('');
@@ -108,16 +107,11 @@ const QuizGenerator = () => {
         setGeneratedText(response.data.choices[0].text);
         // sendQuizData();
     };
-    
-    
     const sendQuizData = async () => {
         setQuizzes(JSON.parse(quizData));
-        
-
         try {
             const data = JSON.parse(quizData);
             const response = await axios.post('/api/quiz', data);
-            // const response = await axios.post('/api/quiz', generatedText);
             console.log(response.data);
             // console.log(data);
         } catch (error) {
@@ -126,7 +120,6 @@ const QuizGenerator = () => {
     };
 
     return (
-      <AdminRoute>
       <Layout>
         <div className="flex flex-col space-y-4 h-full w-full  bg-gray-50 dark:bg-gray-500 relative overflow-y-auto p-8 lg:ml-64">
             <div className="flex flex-col">
@@ -168,7 +161,6 @@ const QuizGenerator = () => {
             </div>
         </div>
       </Layout>
-    </AdminRoute>
     );
 };
 

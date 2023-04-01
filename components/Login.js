@@ -2,14 +2,16 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const LogIn = () => {
+    const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
     const onSubmit = async (data) => {
         try {
-          const response = await fetch('/api/login', {
+          const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -20,10 +22,12 @@ const LogIn = () => {
           const { token } = await response.json();
       
           // Save the JWT token to local storage
-          localStorage.setItem('token', token);
-      
+        //   localStorage.setItem('token', token);
+        if (token !== undefined) {
+            router.push(`/admin`);
+        }
           // Redirect to the dashboard page
-          window.location.href = '/admin';
+        //   window.location.href = '/admin';
         } catch (err) {
           console.error(err);
         }

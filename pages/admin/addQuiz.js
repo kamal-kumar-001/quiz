@@ -1,19 +1,31 @@
 import React from 'react'
-// import AddQuiz from '../../components/AddQuiz'
 import Layout from '../../components/dashboard/Layout'
-import AdminRoute from '../../components/dashboard/adminRoute'
 import QuizForm from '../../components/dashboard/QuizForm'
 
-const AddQuizzes = () => {
+const AddQuizzes = ({token}) => {
   return (
-    <AdminRoute>
     <Layout>
-    <div className='h-full w-full  bg-gray-50 dark:bg-gray-500 relative overflow-y-auto p-8 lg:ml-64'>
-        <QuizForm mode={'add'}/>
-    </div>
+      <div className='h-full w-full  bg-gray-50 dark:bg-gray-500 relative overflow-y-auto p-8 lg:ml-64'>
+        <QuizForm mode={'add'} token={token}/>
+      </div>
     </Layout>
-    </AdminRoute>
   )
 }
-
-export default AddQuizzes
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const token = req.cookies.token;
+  if (token == null) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      token,
+    },
+  };
+}
+export default AddQuizzes;
