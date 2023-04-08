@@ -29,6 +29,10 @@ const UserSchema = new mongoose.Schema({
   quizzes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Quiz'
+  }],
+  template: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Template'
   }]
 }, {timestamps: true});
 

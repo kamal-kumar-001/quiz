@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Signup = () => {
+    const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
@@ -17,8 +19,8 @@ const Signup = () => {
             body: JSON.stringify(data)
           });
           const result = await response.json();
-          console.log(result);
-          window.location.href = '/login';
+        //   console.log(result);
+          router.push('/login');
         } catch (error) {
           console.error(error);
         }

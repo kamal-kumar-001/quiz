@@ -16,7 +16,7 @@ const Explanation = ({ quizzes, selectedAnswers }) => {
                     <ul className="list-none pl-5">
                         {question.options.map((option) => (
                             <li key={option._id} className="my-2 space-y-3">
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-start gap-3">
                                     <input
                                         type="radio"
                                         // name="option"
@@ -28,10 +28,10 @@ const Explanation = ({ quizzes, selectedAnswers }) => {
                                             (option.isCorrect && selectedAnswers[question._id] === undefined)
                                         }
                                         disabled
-                                        className="h-5 w-5 border-none cursor-pointer bg-gray-300 appearance-none checked:bg-blue-500 rounded-full  focus:outline-none"
+                                        className="mt-[2px] min-h-[20px] min-w-[20px] border-none cursor-not-allowed bg-gray-300 appearance-none checked:bg-blue-500 rounded-full  focus:outline-none"
                                     />
                                     <label htmlFor={option._id}>
-                                        {option.text} {option.isCorrect && <span className="text-green-600 font-bold ml-2">(Correct)</span>}
+                                        {option.text} {option.isCorrect && <span className="text-green-600  font-bold ml-2">(Correct)</span>}
                                         {!option.isCorrect && selectedAnswers[question._id] === option.text && (
                                             <span className="text-red-600 font-bold ml-2">(Selected)</span>
                                         )}
@@ -40,7 +40,7 @@ const Explanation = ({ quizzes, selectedAnswers }) => {
                                 {option.explanation ? (
                                     <div >
                                     <span >Explanation:</span>
-                                    <div className='m-4 dark:text-gray-200 text-gray-600 ' dangerouslySetInnerHTML={createMarkup(option.explanation)}></div>
+                                    <div className='m-4 ' dangerouslySetInnerHTML={createMarkup(option.explanation)}></div>
                                 </div>
                                 ):('')}
                             </li>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../../../components/dashboard/Layout';
 import QuizForm from '../../../components/dashboard/QuizForm';
+import { hasToken } from '../../../middleware/checkUser'
 
 const UpdateQuizPage = ({quizzes, token}) => {
   return (
@@ -11,28 +12,31 @@ const UpdateQuizPage = ({quizzes, token}) => {
     </Layout>
   )
 }
-export async function getServerSideProps({ params ,req }) {
+
+
+export async function getServerSideProps({ params , req }) {
   const { slug } = params;
-  const token = req.cookies.token;
-  if (token == null) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
-  }
-  let url = req.headers.referer;
-  let arr = url.split('/');
-  url = `${arr[0]}//${arr[2]}`;
-  const res = await fetch(`${url}/api/quiz/${slug}`);
-  // const res = await fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/quiz/${slug}`);
-  const data = await res.json();
+  const headers = req.headers;
+  const token = await hasToken(req)
+  if(!token){
+      return {
+        redirect: {
+          destination: '/login',
+              permanent: false
+            }
+          }
+        }
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://quiz-mrnormal128-gmailcom.vercel.app';  // Replace with your API endpoint URL
+        const response = await fetch(`${apiUrl}/api/quiz/${slug}`, {
+          headers: headers,
+        });
+        
+        // const res = await fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/quiz/${slug}`);
+        const data = await response.json();
   return {
-      props: {
-          quizzes: data?.quiz || null,
-          token,
-      },
+    props: {
+      quizzes: data?.quiz || null,
+    },
   };
 }
 export default UpdateQuizPage

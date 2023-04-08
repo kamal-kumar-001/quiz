@@ -1,6 +1,7 @@
-import Quiz from "../../Models/Quiz";
-import connectDb from "../../middleware/mongoose";
-import { verify } from 'jsonwebtoken';
+import Quiz from "../../../Models/Quiz";
+import connectDb from "../../../middleware/mongoose";
+import { getToken } from "next-auth/jwt";
+const secret = process.env.NEXTAUTH_SECRET
 const handler = async (req, res) => {
   const { method } = req;
   function generateSlug(title) {
@@ -12,13 +13,15 @@ const handler = async (req, res) => {
     const timestamp = Date.now().toString(36);
     return `${slug}${timestamp}`;
   }
+  
+  // Get the token from next-auth/jwt
+  const token = await getToken({ req, secret });
+  // console.log(token);
+
   switch (method) {
     case "GET":
       try {
-        const authHeader = req.headers.authorization;
-        const token = authHeader && authHeader.split(' ')[1];
-        const decoded = verify(token, 'secretKey');
-        const userId = decoded.userId;
+        const userId = token?.sub; // Extract user ID from token
         const quizzes = await Quiz.find({ user: userId }).sort({
           createdAt: -1,
         });
@@ -30,15 +33,12 @@ const handler = async (req, res) => {
 
     case "POST":
       try {
-        const authHeader = req.headers.authorization;
-        const token = authHeader && authHeader.split(' ')[1];
-        const decoded = verify(token, 'secretKey');
-        const userId = decoded.userId; // extract the user ID from the token
+        const userId = token?.sub; // Extract user ID from token
         const quiz = await new Quiz({
           title: req.body.title,
           slug: generateSlug(req.body.title),
           questions: req.body.questions || [],
-          user: userId, // include the user ID in the request
+          user: userId, // Include user ID in the request
         }).save();
         res.status(200).json({ message: "Created successfully" });
       } catch (error) {
@@ -50,10 +50,7 @@ const handler = async (req, res) => {
     case "PUT":
       try {
         const { id } = req.query;
-        const authHeader = req.headers.authorization;
-        const token = authHeader && authHeader.split(' ')[1];
-        const decoded = verify(token, 'secretKey');
-        const userId = decoded.userId;
+        const userId = token?.sub; // Extract user ID from token
         const quiz = await Quiz.findOneAndUpdate(
           { _id: id, user: userId },
           req.body,
@@ -75,10 +72,7 @@ const handler = async (req, res) => {
     case "DELETE":
       try {
         const { id } = req.query;
-        const authHeader = req.headers.authorization;
-        const token = authHeader && authHeader.split(' ')[1];
-        const decoded = verify(token, 'secretKey');
-        const userId = decoded.userId;
+        const userId = token?.sub; // Extract user ID from token
         const deletedQuiz = await Quiz.findOneAndDelete({
           _id: id,
           user: userId,

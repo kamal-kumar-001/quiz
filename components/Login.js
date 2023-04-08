@@ -3,37 +3,39 @@ import { useForm } from 'react-hook-form';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { VscLoading } from 'react-icons/vsc'
+import { signIn } from 'next-auth/react';
 
 const LogIn = () => {
     const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
 
     const onSubmit = async (data) => {
         try {
-          const response = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          });
-      
-          const { token } = await response.json();
-      
-          // Save the JWT token to local storage
-        //   localStorage.setItem('token', token);
-        if (token !== undefined) {
-            router.push(`/admin`);
-        }
-          // Redirect to the dashboard page
-        //   window.location.href = '/admin';
-        } catch (err) {
-          console.error(err);
-        }
-      };
-      
+            setLoading(true)
+            const result = await signIn('credentials', {
+                redirect: false,
+                email: data.email,
+                password: data.password,
+            });
 
+            if (result?.error) {
+                console.error(result.error);
+                setError('Invalid Credentials')
+                setLoading(false)
+            } else {
+                // Redirect to the admin page on successful login
+                router.push('/admin');
+                // setLoading(false)
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
@@ -47,7 +49,9 @@ const LogIn = () => {
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-                    <input type="hidden" name="remember" value="true" />
+                    <span className="text-red-500  mt-1">
+                        {error}
+                    </span>
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label htmlFor="email-address" className="sr-only">
@@ -130,7 +134,9 @@ const LogIn = () => {
                             <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                 {/* <!-- Heroicon name: lock-closed --> */}
                             </span>
-                           LogIn
+                            {loading ? (
+                                <VscLoading className='animate-spin text-xl font-bold' />
+                            ) : ('LogIn')}
                         </button>
                     </div>
                 </form>
@@ -149,23 +155,24 @@ const LogIn = () => {
 
                     <div className="mt-6 grid grid-cols-1 gap-3">
                         <div>
-                        <button
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none "
-                        >
-                           Google
-                        </button>
+                            <button
+                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none "
+                            >
+                                Google
+                            </button>
                         </div>
                     </div>
                     <p className="mt-2 mb-0 pt-1 text-sm font-semibold">
-              Do not have an account?
-              <Link
-                href="/signup"
-                className="text-red-500 ml-2"
-                >SignUp
-                </Link>
-            </p>
+                        Do not have an account?
+                        <Link
+                            href="/signup"
+                            className="text-red-500 ml-2"
+                        >SignUp
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>
-    )}
-    export default LogIn
+    )
+}
+export default LogIn

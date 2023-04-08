@@ -1,10 +1,14 @@
 import connectDb from '../../../middleware/mongoose';
 import Quiz from '../../../Models/Quiz';
+import Template from '../../../Models/Template';
 
 
 const handler = async (req, res) => {
-    const { slug  } = req.query;
+  const { slug  } = req.query;
   const quiz = await Quiz.findOne({ slug });
+  const userId = quiz?.user?.toString();
+  const template = await Template.findOne({ user: userId });
+  
   
   if (req.method === 'POST' ) {
     try {
@@ -23,7 +27,7 @@ const handler = async (req, res) => {
   }
 
   if (quiz?.isPublic) {
-    return res.status(200).json({ quiz  });
+    return res.status(200).json({ quiz , template });
   }
   if (!quiz) {
     return res.status(404).json({ message: 'Quiz not found' });

@@ -1,43 +1,28 @@
-import React from 'react'
-import LogIn from '../components/Login'
-import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import LogIn from '../components/Login';
+import Loading from '../components/loading';
 
-export default function LogInPage() {
+function AuthPage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
-  return (
-    <>
-      <Head>
-        <title>Quiz | Log In</title>
-        <meta
-          name="description"
-          content='create a Quiz with next js'
-        />
-        <meta
-          name="theme-color"
-          content="#000"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <LogIn />
-    </>
-  )
-}
+  useEffect(() => {
+    getSession().then((session) => {
+      if (session) {
+        router.replace('/admin');
+      } else {
+        setIsLoading(false);
+      }
+    });
+  }, [router]);
 
-export async function getServerSideProps(context) {
-  const { req } = context;
-  const token = req.cookies.token;
-
-  if (token != null) {
-    return {
-      redirect: {
-        destination: '/admin',
-        permanent: false,
-      },
-    };
+  if (isLoading) {
+    return <Loading/>;
   }
 
-  return {
-    props: {},
-  };
+  return <LogIn />;
 }
 
+export default AuthPage;

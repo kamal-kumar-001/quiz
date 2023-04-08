@@ -1,60 +1,37 @@
 import React from 'react';
 import Admin from '../../components/Admin';
-import jwt from 'jsonwebtoken';
+import { hasToken } from '../../middleware/checkUser'
 
-export default function AdminPage({ quizzes, user, token }) {
-  return <Admin quizzes={quizzes} user={user} token={token} />;
+
+export default function AdminPage({ quizzes}) {
+  return <Admin quizzes={quizzes} />;
 }
+
+
 
 export async function getServerSideProps(context) {
-  const { req } = context;
-  const token = req.cookies.token;
-  let url = req.headers.referer;
-  let arr = url.split('/');
-  url = `${arr[0]}//${arr[2]}`;
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
+  const { req } = context
+  const headers = req.headers;
+  const token = await hasToken(context.req)
+  if(!token){
+      return {
+          redirect: {
+              destination: '/login',
+              permanent: false
+          }
+      }
   }
-
-  const decodedToken = jwt.decode(token);
-  const userId = decodedToken?.userId;
-
-  try {
-    const [userRes, quizzesRes] = await Promise.all([
-      fetch(`${url}/api/user/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }),
-      fetch(`${url}/api/quiz`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }),
-    ]);
-    const [userData, quizzesData] = await Promise.all([
-      userRes.json(),
-      quizzesRes.json(),
-    ]);
-    return {
-      props: {
-        user: userData?.user || null,
-        quizzes: quizzesData?.quizzes || null,
-        token,
-      },
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      redirect: {
-        destination: '/admin',
-        permanent: false,
-      },
-    };
-  }
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://quiz-mrnormal128-gmailcom.vercel.app';  // Replace with your API endpoint URL
+  const response = await fetch(`${apiUrl}/api/quiz`, {
+    headers: headers,
+  });
+  const data = await response.json();
+  return {
+    props: {
+      quizzes: data?.quizzes || null,
+    },
+  };
 }
+
+
+

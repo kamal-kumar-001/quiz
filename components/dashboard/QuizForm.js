@@ -3,8 +3,7 @@ import Router from 'next/router';
 import axios from 'axios';
 import RichEditor from './RichEditor';
 
-const QuizForm = ({ quizzes, mode, token }) => {
-    // console.log(quizzes);
+const QuizForm = ({ quizzes, mode }) => {
     const [title, setTitle] = useState('');
     const [questions, setQuestions] = useState([{ question: '', options: [{ text: '', isCorrect: false, explanation: '' }] }]);
     useEffect(() => {
@@ -68,13 +67,11 @@ const QuizForm = ({ quizzes, mode, token }) => {
             )
         );
     };
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const Quiz = { title, questions };
         try {
-            const headers = { Authorization: `Bearer ${token}` };
+            // const headers = { Authorization: `Bearer ${token}` };
             let url = `/api/quiz`;
             let method = 'post';
             if (mode === 'update') {
@@ -85,7 +82,7 @@ const QuizForm = ({ quizzes, mode, token }) => {
                 method,
                 url,
                 data: Quiz,
-                headers,
+                // headers,
             });
             console.log(response.message);
             Router.push('/admin/');

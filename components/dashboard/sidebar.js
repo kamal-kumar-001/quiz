@@ -6,6 +6,7 @@ import {
     RiAddFill
 } from 'react-icons/ri'
 import { BsRobot } from 'react-icons/bs'
+import { CgTemplate } from 'react-icons/cg'
 import { HiDocumentText } from 'react-icons/hi'
 import { MdHelp, MdOutlineDiamond } from 'react-icons/md'
 import Link from 'next/link'
@@ -31,6 +32,11 @@ const Sidebar = ({click}) => {
             label: 'Generate Quizs',
             icon: <BsRobot className='w-5 h-5 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />,
             link: '/admin/generateQuiz',
+        },
+        {
+            label: 'Template',
+            icon: <CgTemplate className='w-5 h-5 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />,
+            link: '/admin/template',
         },
         
     ];
@@ -90,27 +96,30 @@ const Sidebar = ({click}) => {
                                                 )}
                                             </li>
                                         ))}
-
                                     </ul>
                                 </div>
-                                <div className={` px-3 bg-white dark:bg-black border-t-2 border-r-2 border-gray-700 dark:border-gray-200 bottom-0 space-y-2 pt-2 duration-500   ${!click ? 'w-0 lg:w-64 xl:w-64 ' : 'w-64 duration-500'}`}>
-                                    <a href="#" className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
+                                <div className={` bg-white dark:bg-black border-t-2 border-r-2 border-gray-700 dark:border-gray-200 bottom-0 space-y-2 pt-2 duration-500  absolute  ${!click ? 'w-0 lg:w-64 xl:w-64 ' : 'w-64 duration-500 '}`}>
+                                    <div className='relative overflow-y-auto'>
+                                    
+                                    <a href="#" className="text-base ml-3 text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
                                         <MdOutlineDiamond className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
                                         <span className="ml-4">Upgrade to Pro</span>
                                     </a>
-                                    <a href="#" className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
+                                    <a href="#" className="text-base ml-3 text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
                                         <HiDocumentText className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
                                         <span className="ml-4">Documentation</span>
                                     </a>
-                                    <a href="#" className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
+                                    <Link href="/admin/help" className="text-base ml-3 text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
                                         <MdHelp className='w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition duration-75' />
                                         <span className="ml-4">Help</span>
-                                    </a>
-                                    <a className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
+                                    </Link>
+                                    <a className="text-base ml-3 text-gray-900 font-normal rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group transition duration-75 flex items-center p-2">
                                         <ThemeChanger >
                                             Theme
                                         </ThemeChanger>
                                     </a>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>

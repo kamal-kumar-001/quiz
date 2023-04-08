@@ -7,32 +7,32 @@ import { FcManager } from 'react-icons/fc'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Sidebar from './sidebar'
+import { useSession, signOut } from 'next-auth/react';
 
-const Layout = ({ children,user  }) => {
+const Layout = ({ children  }) => {
+    const { data: session, status } = useSession();
+    const user = session?.user
     const router = useRouter();
     const [click, setClick] = useState(false);
     const handleClick = () => {
         setClick(!click);
+        setUserMenu(false);
     };
     const [userMenu, setUserMenu] = useState(false);
     const handleUserMenu = () => {
         setUserMenu(!userMenu);
     };
+    // console.log(session?.user);
+    // console.log(user);
     
     const handleSignOut = async () => {
-      try {
-        const response = await fetch('/api/auth/signout', {
-          method: 'POST',
-        });
-        if (response.status === 200) {
-          router.push('/');
-        } else {
-          console.error('Failed to sign out.');
+        try {
+          await signOut();
+          router.push('/login');
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+      };
     return (
         <div>
             <div>
@@ -71,7 +71,7 @@ const Layout = ({ children,user  }) => {
                                         </div>
                                         <ul className="py-1" role="none">
                                             <li>
-                                                <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" >Profile</Link>
+                                                <Link href="/admin/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" >Profile</Link>
                                             </li>
                                             <li>
                                                 <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" >Subscription</Link>
