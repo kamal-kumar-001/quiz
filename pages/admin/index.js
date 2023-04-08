@@ -21,8 +21,11 @@ export async function getServerSideProps(context) {
           }
       }
   }
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://quiz-mrnormal128-gmailcom.vercel.app';  // Replace with your API endpoint URL
-  const response = await fetch(`${apiUrl}/api/quiz`, {
+  // const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://quiz-mrnormal128-gmailcom.vercel.app';  // Replace with your API endpoint URL
+  // const response = await fetch(`${apiUrl}/api/quiz`, {
+  //   headers: headers,
+  // });
+  const response = await fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/quiz`, {
     headers: headers,
   });
   const data = await response.json();

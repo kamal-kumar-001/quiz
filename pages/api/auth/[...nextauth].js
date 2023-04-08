@@ -3,7 +3,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import User from '../../../Models/User';
 import connectDb from '../../../middleware/mongo';
 
-
+const NEXTAUTH_SECRET = "hgcjytfuytdyrcdfyjfxhgfjfhdf"
+// const secret = process.env.NEXTAUTH_SECRET || "hgcjytfuytdyrcdfyjfxhgfjfhdf"
 export default NextAuth({
   session: {
     jwt: true

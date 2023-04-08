@@ -22,11 +22,14 @@ export async function getServerSideProps({  req }) {
             }
           }
         }
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://quiz-mrnormal128-gmailcom.vercel.app'; 
+        // const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://quiz-mrnormal128-gmailcom.vercel.app'; 
         // console.log(apiUrl);
-        const response = await fetch(`${apiUrl}/api/template`, {
+        const response = await fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/template`, {
           headers: headers,
         });
+        // const response = await fetch(`${apiUrl}/api/template`, {
+        //   headers: headers,
+        // });
         // const res = await fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/quiz/${slug}`);
         const data = await response.json();
         // console.log(data);

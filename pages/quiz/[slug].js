@@ -24,9 +24,9 @@ const Quiz = ({ quizzes, template }) => {
 
 export async function getServerSideProps({ params }) {
   const { slug } = params;
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://quiz-mrnormal128-gmailcom.vercel.app'; 
-  const res = await fetch(`${apiUrl}/api/quiz/${slug}`);
-  // const res = await fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/quiz/${slug}`);
+  // const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://quiz-mrnormal128-gmailcom.vercel.app'; 
+  // const res = await fetch(`${apiUrl}/api/quiz/${slug}`);
+  const res = await fetch(`https://quiz-mrnormal128-gmailcom.vercel.app/api/quiz/${slug}`);
   const { template, quiz } = await res.json();
   // const data = await res.json();
 
