@@ -1,7 +1,7 @@
 import { getToken } from "next-auth/jwt"
 
-const secret = process.env.NEXTAUTH_SECRET
-
+const secret = process.env.NEXTAUTH_SECRET || "hgcjytfuytdyrcdfyjfxhgfjfhdf"
+// console.log(secret);
 // CHECKING FUNCTIONS
 export const hasToken = async (req) => {
   const token = await getToken({ req, secret })

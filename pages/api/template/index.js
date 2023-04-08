@@ -1,7 +1,7 @@
 import Template from "../../../Models/Template";
 import connectDb from "../../../middleware/mongoose";
 import { getToken } from "next-auth/jwt";
-const secret = process.env.NEXTAUTH_SECRET
+const secret = process.env.NEXTAUTH_SECRET || 'hgcjytfuytdyrcdfyjfxhgfjfhdf'
 
 const handler = async (req, res) => {
   const { method } = req;
